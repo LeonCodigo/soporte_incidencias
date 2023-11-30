@@ -13,7 +13,7 @@ public class Principal
 	public static void main(String[] argumentos)
 	{
 		
-		short opciones = 99, subOPcion = 99;
+		int opciones = 99;
 		
 		try {
 			
@@ -22,39 +22,28 @@ public class Principal
 
 			while(opciones != 0) 
 			{
-				System.out.println("\n\n\n     M E N U \n" );
+				System.out.println("\n\n\n   --  M E N U -- \n" );
 				System.out.println("| 1 | -> Area RRHH" ); //
 				System.out.println("| 2 | -> Area comercial");
 				System.out.println("| 3 | -> Area Mesa de ayuda");
-				System.out.println("| 4 | -> ");
-				System.out.println("| 5 | -> ");
-				System.out.println("\n|0| -> S A L I R");
+			
+				System.out.println("\n| 0 | -> S A L I R");
 				
-				opciones = teclado.nextShort();
+				opciones = teclado.nextInt();
 				
 				switch(opciones)
 				{
 				
-				case 1: String[] menuOPciones = {"Alta tecnico", "Listar tecnicos", "Baja tecnico", "Modificar tecnico"};
-				menuRRHH(creaMenu("MENU RRHH", menuOPciones));					
+				case 1: String[] menuOPciones = {"Alta tecnico", "Listar tecnicos", "Baja tecnico"};
+				menuRRHH( creaMenu("-- MENU RRHH -- ", menuOPciones) );					
 				break;
 				
-				case 2: String[] menuOPciones2 = {"Alta cliente", "Listar cliente", "Baja cliente", "Modificar cliente"};
-			    menuAreaComercial(creaMenu( "MENU AREA COMERCIAL", menuOPciones2 ));					
+				case 2: String[] menuOPciones2 = {"Alta cliente", "Listar cliente", "Baja cliente"};
+			    menuAreaComercial( creaMenu( "-- MENU AREA COMERCIAL --", menuOPciones2 ) );					
 				break;
 				
-				case 3: String[] menuOPciones3 = {"Alta incidente", "Listar incidente", "Baja incidente", "Modificar incidente"};
-			    menuRRHH(creaMenu("MENU MESA DE AYUDA", menuOPciones3));						
-				break;
-				
-				case 4:  					
-				break;
-				
-				case 5: 
-			    break;
-			
-				case 6:					
-					   		
+				case 3: String[] menuOPciones3 = {"Alta incidente", "Listar incidente", "Baja incidente"};
+			    menuRRHH( creaMenu("-- MENU MESA DE AYUDA -- ", menuOPciones3) );						
 				break;
 				
 				default : System.out.println("Seleccione una opcion valida" ); 
@@ -72,7 +61,6 @@ public class Principal
 		    System.out.println("Error en ABM de la base de datos MAIN: "+ obj);
 		    System.out.println(obj.fillInStackTrace());
 		    }
-
 		
 		
 		
@@ -82,7 +70,7 @@ public class Principal
 	
 	static public short creaMenu(String nombre, String[] menuOpciones)
 	{		
-			
+		System.out.println(nombre + "\n");		
 			for (int i = 0; i < menuOpciones.length; i++) 
 			{
 				System.out.println("|"+ (i+1) +"| -> " + menuOpciones[i]);
@@ -103,14 +91,13 @@ public class Principal
 		         ConexionDB.altaTecnicoDB(tec1);
 			break;
 		
-		case 2: ConexionDB.listarEmpleado();
+		case 2: ConexionDB.listarTecnico();;
 
 			break;
-		case 3:
-
+		case 3:  System.out.print("\n Seleccione el id del Tecnico a dar de baja: ");
+			String id = teclado.next();
+			ConexionDB.bajaTecnicoId(id);
 			break;
-		case 4:
-			break;	
 			
 		default : System.out.println("Seleccione una opcion valida" ); 
 		
@@ -132,9 +119,8 @@ public class Principal
 		case 3:
 
 			break;
-		case 4:
-
-			break;		
+		
+		default : System.out.println("Seleccione una opcion valida" ); 
 	    }  // fin switch
 	}
 	
@@ -153,9 +139,8 @@ public class Principal
 		case 3:
 
 			break;
-		case 4:
 
-			break;		
+		default : System.out.println("Seleccione una opcion valida" ); 
 	    }  // fin switch
 	}
 	

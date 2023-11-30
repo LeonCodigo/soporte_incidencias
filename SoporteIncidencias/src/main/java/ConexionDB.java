@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.Scanner;
 
 public class ConexionDB {
 	private static Connection conX;
@@ -108,7 +109,37 @@ public static void listarEmpleado() {
 		System.out.println("Error en el select de la tabla EMPLEADO"+ e);
 		e.printStackTrace();
 	} 
+}
+
+/*  ********************          T E C N I C O      ******************************************/
+
+//******************LISTAR TECNICO
+public static void listarTecnico() {
+
+	
+	String consulta = "select * from tecnico";
+
+	ResultSet sql;
+	try {
+		sql = sT.executeQuery(consulta);
+		
+	 	while (sql.next()) {
+		
+	 		System.out.println("idTecnico: "+sql.getInt(1)+"\tcuitEmpleado: "+sql.getString(2)+"\tcodSoporte: "+sql.getString(3)+
+	 				"\ttituloTecnico: "+sql.getString(4)+"\tdispoTecnico: "+sql.getString(5)+"\taltaTecnico: "+sql.getString(6)
+	 				+"\testadoTecnico: "+ sql.getString(7));
+		
+	 	}
+		
+	} catch (SQLException e) {
+		System.out.println("Error en el select de la tabla tecnico"+ e);
+		e.printStackTrace();
+	} 
 }	
+
+
+
+
  
 //*********************ALTA TECNICO
  public static void altaTecnicoDB(Tecnico tec1) {
@@ -135,8 +166,26 @@ public static void listarEmpleado() {
        System.out.println("Error en el insert de la tabla Tecnico"+ obj);
           obj.fillInStackTrace();
        }
-
    }
+ 
+ // **************************** BAJA TECNICO 
+ 
+ public static void bajaTecnicoId(String  id)
+ {	 
+	 String consulta = " delete from Tecnico where idTecnico = " + id;	 
+	 try
+	 {
+		 PreparedStatement query = conX.prepareStatement(consulta);
+		if(query.executeUpdate() == 1) { System.out.println("Se elimino el registro del tecnico con exito"); }
+	 }
+	 catch(SQLException e)
+	 {
+		 System.out.println("Error al intentar eliminar registro n°: "+ id + " Excepcion: "+ e);
+	 }	
+	 
+ }
+ 
+ 
  
  //*********validar cuit empleado
  public static boolean validarCuitEmpleado(String cuitEmp) {
@@ -154,7 +203,7 @@ public static void listarEmpleado() {
 			id = sql.getInt(1);
 			nom = sql.getString(3);
 			ape = sql.getString(4);
-			System.out.println(sql.getInt(1)+"\t"+sql.getString(2)+"\t"+sql.getString(3)+"\t"+sql.getString(4));
+			System.out.println("id: "+ sql.getInt(1)+"\t cuit: "+sql.getString(2)+"\t nombre: "+sql.getString(3)+"\t apellido:"+sql.getString(4));
 			if(sql.getRow()==0) { 
 				System.out.println("El empleado no existe, INGRESE OTRO CUIT");
 				return resultado = false;

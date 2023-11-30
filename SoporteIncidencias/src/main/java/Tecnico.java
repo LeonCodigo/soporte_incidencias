@@ -25,7 +25,8 @@ public static Tecnico altaTecnico(){
 		System.out.println("*****INGRESE LOS SIGUIENTES DATOS DEL TECNICO*****");
 	    System.out.println("***********RESPETANDO LAS INDICACIONES*************");		
 
-		while (valida) {
+		while (valida)
+		    {
 			System.out.println("CUIT de OPERADOR: ");
 			cuitEmp = entrada.nextLine();	
 		
@@ -36,8 +37,9 @@ public static Tecnico altaTecnico(){
 		       }
 			else
 				valida = false;
-		}
-		
+		    }
+		System.out.println("CUIT nuevo Tecnico: ");
+		String cuitTec = entrada.nextLine();
 		System.out.println("CODIGO deL Soporte/Servicio (10 caract. max.): ");
 		String codSopo = entrada.nextLine();
 		System.out.println("TITULO/PROFESION/OFICIO: ");
@@ -48,7 +50,7 @@ public static Tecnico altaTecnico(){
 		String estado = entrada.nextLine();
 		
 		
-		Tecnico tec1 = new Tecnico(1,cuitEmp,codSopo,titulo,disponibilidad,estado);
+		Tecnico tec1 = new Tecnico(1,cuitTec,codSopo,titulo,disponibilidad,estado);
 			
 		//System.out.println(tec1.toString());
 
