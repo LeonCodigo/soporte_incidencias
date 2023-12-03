@@ -1,3 +1,4 @@
+package gral;
 import java.sql.Connection;
 
 import java.sql.DriverManager;
@@ -35,7 +36,6 @@ public class ConexionDB {
 	      //validar que el cuit no exista -tambien se podria validar el contrato(codSoporte)
 	  String consulta = "insert into cliente(idCli,cuit,razonS,nom,ape,dire,cel,mail,contrato,altaCliente)"
 	  		+ " values (idCli,?,?,?,?,?,?,?,?,?)";
-
 		
 		try {
 			PreparedStatement sqlUp = conX.prepareStatement(consulta);
