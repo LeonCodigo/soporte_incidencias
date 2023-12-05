@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ConexionDB {
@@ -113,28 +114,34 @@ public static void listarEmpleado() {
 
 /*  ********************          T E C N I C O      ******************************************/
 
-//******************LISTAR TECNICO
-public static void listarTecnico() {
-
-	
+//******************LISTAR TECNICO  // ArrayList<Object> 
+public static ArrayList<Tecnico> listarTecnico(String cuit) {
+    
+	ArrayList<Tecnico> res = new ArrayList<Tecnico>();
 	String consulta = "select * from tecnico";
+	if(!cuit.isBlank()) { consulta = "select * from tecnico where cuitEmpleado = "+ cuit; }
+
 
 	ResultSet sql;
 	try {
 		sql = sT.executeQuery(consulta);
 		
 	 	while (sql.next()) {
-		
+		/*
 	 		System.out.println("idTecnico: "+sql.getInt(1)+"\tcuitEmpleado: "+sql.getString(2)+"\tcodSoporte: "+sql.getString(3)+
 	 				"\ttituloTecnico: "+sql.getString(4)+"\tdispoTecnico: "+sql.getString(5)+"\taltaTecnico: "+sql.getString(6)
 	 				+"\testadoTecnico: "+ sql.getString(7));
-		
+		*/
+	 		res.add(new Tecnico(sql.getInt(1),sql.getString(2),sql.getString(3),sql.getString(4),
+	 				sql.getString(5), LocalDate.parse(sql.getString(6)),sql.getString(7) ));
 	 	}
 		
 	} catch (SQLException e) {
 		System.out.println("Error en el select de la tabla tecnico"+ e);
 		e.printStackTrace();
 	} 
+	
+	return res;
 }	
 
 

@@ -74,6 +74,8 @@ public class FormularioRRHH extends JFrame implements ActionListener
 		else if(e.getSource() == btn_2) 
 		{
 			System.out.println("PRECIONASTE BOTON "+ btn_2);
+			FormularioMuestraTecnico formularioMuestraTecnico = new FormularioMuestraTecnico(this);
+			this.setVisible(false);
 		}
 		else if(e.getSource() == btn_3) 
 		{

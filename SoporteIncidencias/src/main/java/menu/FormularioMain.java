@@ -56,7 +56,7 @@ public class FormularioMain extends JFrame implements ActionListener
 	}
 	
 	
-	public JButton creaBoton(String texto, int posx,int posy,int ancho, int alto)
+	private JButton creaBoton(String texto, int posx,int posy,int ancho, int alto)
 	{
 		 JButton boton = new JButton(texto);
 		 boton.setBounds(posx,posy, ancho,alto);
@@ -66,7 +66,7 @@ public class FormularioMain extends JFrame implements ActionListener
 		 return boton;
 	}
 	
-	public JLabel creaEtiqueta(String texto, int posx,int posy,int ancho, int alto)
+	private JLabel creaEtiqueta(String texto, int posx,int posy,int ancho, int alto)
 	{
 		JLabel etiqueta = new JLabel(texto);
 		etiqueta.setBounds(posx,posy, ancho,alto);

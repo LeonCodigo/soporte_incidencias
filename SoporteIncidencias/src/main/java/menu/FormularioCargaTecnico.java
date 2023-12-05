@@ -1,8 +1,11 @@
 package menu;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+
 import gral.Tecnico;
 import gral.ConexionDB;
 
@@ -30,19 +33,19 @@ public class FormularioCargaTecnico extends JFrame implements ActionListener
 		
 		// ***********************************************   BOTONES
 		btn_Aceptar = this.creaBoton("ACEPTAR",100,300, 80,50);
-		salir = this.creaBoton("VOLVER",300,300, 80,50);
+		salir = this.creaBoton("VOLVER",350,300, 80,50);
 		salir.setBackground( new Color(200,200,150) );
 		
 		// ***********************************************   CAJA TEXTO
 	
-		txt1 = creaCajaTexto("CUIT nuevo Tecnico: ",300,80,200, 30);
-		txt2 = creaCajaTexto("CODIGO deL Soporte",300,120,200, 30);
-		txt3 = creaCajaTexto("TITULO/PROFESION/OFICIO:",300,160,200, 30);
-		txt4 = creaCajaTexto("DISPONIBILIDAD horaria",300,200,200, 30);
-		txt5 = creaCajaTexto("ESTADO activo/inactivo:",300,240,200, 30);
+		txt1 = creaCajaTexto("Cuit nuevo Tecnico: "     ,220,80 ,220, 20);
+		txt2 = creaCajaTexto("Codigo deL Soporte:"      ,220,120,220, 20);
+		txt3 = creaCajaTexto("Titulo/Profesion/Oficio:" ,220,160,220, 20);
+		txt4 = creaCajaTexto("Disponibilidad horaria:"  ,220,200,220, 20);
+		txt5 = creaCajaTexto("Estdo (activo/inactivo):" ,220,240,220, 20);
 		
 		// ***********************************************   ETIQUETAS
-		lb_titulo = creaEtiqueta("N U E V O   T E C N I C O", 220, 20, 350, 50);
+		lb_titulo = creaEtiqueta("N U E V O   T E C N I C O", 220, 20, 350, 50,18);
 		
 		this.formularioAnterior = anterior;
 		
@@ -57,15 +60,17 @@ public class FormularioCargaTecnico extends JFrame implements ActionListener
 		 boton.setBounds(posx,posy, ancho,alto);
 		 boton.setBorder(null);
 		 boton.addActionListener(this);
+		 boton.setFont(new Font("Comic Sans MS",Font.BOLD,14));
 		 this.add(boton);
 		 return boton;
 	}
 	
-	public JLabel creaEtiqueta(String texto, int posx,int posy,int ancho, int alto)
+	public JLabel creaEtiqueta(String texto, int posx,int posy,int ancho, int alto, int tamanio)
 	{
 		JLabel etiqueta = new JLabel(texto);
 		etiqueta.setBounds(posx,posy, ancho,alto);
 		etiqueta.setBorder(null);
+		etiqueta.setFont(new Font("Comic Sans",Font.BOLD,tamanio));
 		this.add(etiqueta);
 		return etiqueta;
 	}
@@ -74,8 +79,8 @@ public class FormularioCargaTecnico extends JFrame implements ActionListener
 	{
 		 JTextArea caja = new JTextArea();
 		 caja.setBounds(posx,posy, ancho,alto);
-		 caja.setBorder(null);
-		 JLabel textoInformativo = creaEtiqueta(texto,30,posy,200,30);
+		 caja.setFont(new Font("Tahoma",Font.BOLD,12));
+		 JLabel textoInformativo = creaEtiqueta(texto,30,posy,200,30,14);
 		 this.add(caja);
 		 this.add(textoInformativo);
 		 return caja;
@@ -95,7 +100,7 @@ public class FormularioCargaTecnico extends JFrame implements ActionListener
 			String disponibilidad = txt4.getText();			
 			String estado = txt5.getText();
 			
-			Tecnico tec1 = new Tecnico(1,cuitTec,codSopo,titulo,disponibilidad,estado);
+			Tecnico tec1 = new Tecnico(1,cuitTec,codSopo,titulo,disponibilidad,LocalDate.now(),estado);
 			ConexionDB.altaTecnicoDB(tec1);
 			
 		}

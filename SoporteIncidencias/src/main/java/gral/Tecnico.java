@@ -16,8 +16,10 @@ public class Tecnico {
 	private String codSoporte;
 	private String tituloTecnico;
 	private String dispoTecnico;//disponibilidad del tecnico, hs turno , etc
-	private final LocalDate altaTecnico = LocalDate.now();
+	private LocalDate altaTecnico;
 	private String estadoTecnico;
+	
+	
 
 public static Tecnico altaTecnico(){
 		Scanner entrada = new Scanner(System.in);
@@ -53,14 +55,20 @@ public static Tecnico altaTecnico(){
 		String estado = entrada.nextLine();
 		
 		
-		Tecnico tec1 = new Tecnico(1,cuitTec,codSopo,titulo,disponibilidad,estado);
+		Tecnico tec1 = new Tecnico(1,cuitTec,codSopo,titulo,disponibilidad, LocalDate.now(),estado);
 			
 		//System.out.println(tec1.toString());
 
 		entrada.close();
 		return tec1;
 	 	
-	 }	
+	 }
+
+
+
+
+
+
 	
 	
 }

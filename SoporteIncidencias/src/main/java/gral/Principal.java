@@ -92,7 +92,7 @@ public class Principal
 		         ConexionDB.altaTecnicoDB(tec1);
 			break;
 		
-		case 2: ConexionDB.listarTecnico();;
+		case 2: ConexionDB.listarTecnico("");;
 
 			break;
 		case 3:  System.out.print("\n Seleccione el id del Tecnico a dar de baja: ");
